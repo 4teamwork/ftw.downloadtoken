@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ftw.securefiledownload">
+
+  <include package="plone.app.contentmenu" />
+  
+  <browser:page
+        name="send_to_extern"
+        for="emtkva.file.interfaces.IFile"
+        class=".sendtoextern.SendToExtern"
+        template="sendtoextern.pt"
+        permission="zope2.View" />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>

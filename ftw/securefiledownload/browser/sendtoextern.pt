@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+	xmlns:tal="http://xml.zope.org/namespaces/tal" xmlns:metal="http://xml.zope.org/namespaces/metal"
+	xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="en"
+	metal:use-macro="here/main_template/macros/master"
+    i18n:domain="ftw.securefiledownload">
+    <body>
+        <metal:main fill-slot="main">
+            <div metal:define-macro="main">
+                <h1 i18n:translate="ftwsfd_send_to_external">Send file to external</h1>
+                <form action="" method="post" name="form">
+                    <table>
+                        <tr>
+                            <td>
+                                Email
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="email" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td i18n:translate="ftwsfd_comment">
+                                Comment
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class='warning' tal:condition="python"></span>
+                                <textarea name="comment" cols="50" rows="10"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="send file" name="submit"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </metal:main>
+    </body>
+</html>
