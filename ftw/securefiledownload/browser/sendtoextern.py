@@ -2,6 +2,11 @@ import re
 import logging
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
+from ftw.securefiledownload import securefiledownloadMessageFactory as _
+
+from zope.event import notify
+from ftw.journal.events.events import JournalEntryEvent
+from zope.component import getAdapter
 
 logger = logging.getLogger('ftw.securefiledownload')
 
@@ -20,9 +25,15 @@ class SendToExtern(BrowserView):
         submit=self.request.get("submit","")
         if submit:
             if not self.isEmail(email):
-                error(self.request,"enter a valid email address")
-            if not comment:
-                    error(self.request,"enter a comment")
+                error(self.request,_(u"Enter a valid email address"))
+            elif not comment:
+                error(self.request,_(u"Enter a comment"))
+            else:
+                hash=self.create(email)
+                link="http://localhost:8080/emt-kva.teamraum.ch/platform/download_file?token="+hash
+                notify(JournalEntryEvent(self.context, _(u"To")+": "+email, _(u"File sent to external")))
+                info(self.request,_(u"The file has been sent"))
+                info(self.request,link)
         return super(SendToExtern,self).__call__()
        
     def isEmail(self,value):
@@ -30,3 +41,9 @@ class SendToExtern(BrowserView):
         if expr.match(value):
             return True
         return False
+        
+    def create(self, email):
+        manager = getAdapter(self.context.portal_url.getPortalObject(), name='download_permission_manager')
+        perm = manager.create_download_permission(self.context, email)
+        print perm, perm.hash
+        return perm.hash

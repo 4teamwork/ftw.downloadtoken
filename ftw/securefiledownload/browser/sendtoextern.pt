@@ -16,7 +16,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="email" />
+                                <input type="text" name="email" tal:attributes="value python:request.get('email','')" value="" />
                             </td>
                         </tr>
                         <tr>
@@ -26,13 +26,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class='warning' tal:condition="python"></span>
-                                <textarea name="comment" cols="50" rows="10"></textarea>
+                                <textarea name="comment" cols="50" rows="10" tal:content="python:request.get('comment','')"></textarea>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" value="send file" name="submit"/>
+                                <input type="submit" i18n:attributes="value ftwsfd_send" value="send file" name="submit"/>
                             </td>
                         </tr>
                     </table>
