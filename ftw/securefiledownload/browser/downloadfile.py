@@ -7,6 +7,8 @@ from zope.event import notify
 from Products.CMFCore.utils import getToolByName
 from ftw.securefiledownload import securefiledownloadMessageFactory as _
 
+from AccessControl import SecurityManagement
+
 logger = logging.getLogger('ftw.securefiledownload')
 def msg(request, message, mtype): 
     IStatusMessage(request).addStatusMessage(message, type=mtype)
@@ -25,12 +27,11 @@ class DownloadFile(BrowserView):
             info(self.request,"email: %s / file: %s"%(perm.email,perm.uid))
             notify(JournalEntryEvent(self.context, _(u"From")+": "+perm.email, _(u"File downloaded")))
             # benutzer wechseln
-            # self.context.acl_users.getUser("zopemaster")
-            self.get_file_by_uid(perm.uid)
+            return self.get_file_by_uid(perm.uid)
             # benutzer zurück
         else:
             error(self.request,"Leider kein korrekter hash")
-        return super(DownloadFile,self).__call__()
+        return self.request.RESPONSE.redirect("view")
         
     def exists(self, hash):
         manager = getAdapter(self.context.portal_url.getPortalObject(), name='download_permission_manager')
@@ -41,17 +42,11 @@ class DownloadFile(BrowserView):
         perm = manager.get_download_permission(hash=hash)
         print perm, perm.hash
         # remove
-        # manager.invalidate_download_permission(perm)
+        manager.invalidate_download_permission(perm)
         return perm
         
     def get_file_by_uid(self,uid):
-        request = self.context.REQUEST
-        response = request.RESPONSE
-        target=""
         reference_tool = getToolByName(self.context, 'reference_catalog')
         obj = reference_tool.lookupObject(uid)
-        if not obj:
-            return response.notFoundError('''The link you followed appears to be broken''')
-        else:
-            target=obj.absolute_url()+"/at_download"
-        return response.redirect(target, status=301)
+        file = obj.getFile()
+        return file.download(self.request)

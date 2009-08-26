@@ -24,6 +24,7 @@ setup(name='ftw.securefiledownload',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'ftw.sendmail',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

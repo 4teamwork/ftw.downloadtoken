@@ -5,6 +5,8 @@
     xmlns:i18n="http://namespaces.zope.org/i18n" 
     i18n_domain="ftw.securefiledownload">
 
+    <include package="ftw.sendmail" />
+
   <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales" />
   

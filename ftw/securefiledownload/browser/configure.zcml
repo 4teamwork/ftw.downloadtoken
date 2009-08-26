@@ -16,7 +16,6 @@
          name="download_file"
          for="*"
          class=".downloadfile.DownloadFile"
-         template="downloadfile.pt"
          permission="zope2.View" />
         
   <!-- -*- extra stuff goes here -*- -->
