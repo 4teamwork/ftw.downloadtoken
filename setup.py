@@ -1,11 +1,12 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1-dev'
+version = open("ftw/securefiledownload/version.txt")
+maintainer = "Julian Infanger"
 
 setup(name='ftw.securefiledownload',
       version=version,
-      description="",
+      description="maintainer: %s"%maintainer,
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
@@ -14,9 +15,9 @@ setup(name='ftw.securefiledownload',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='',
-      author='Julian Infanger',
-      author_email='info@4teamwork.ch',
-      url='https://svn.4teamwork.ch/repos/ftw/ftw.securefiledownload/trunk/',
+      author='%s, 4teamwork GmbH'%maintainer,
+      author_email='mailto:info@4teamwork.ch',
+      url='http://psc.4teamwork.ch/4teamwork/ftw/ftw.securefiledownload/',
       license='GPL2',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['ftw'],

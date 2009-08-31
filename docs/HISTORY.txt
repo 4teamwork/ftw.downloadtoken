@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.1-dev - Unreleased
-----------------
-
+0.1
+---
+* implemented securefiledownload
 * Initial release
 
