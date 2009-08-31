@@ -54,17 +54,32 @@ msgstr "Datei an externe Person verschickt"
 msgid "There is appeard an error"
 msgstr "Es ist ein Fehler aufgetreten"
 
+#. Default: 'From'
+#: ftw/securefiledownload/browser/downloadfile.py
+msgid "From"
+msgstr "Von"
+
 #. Default: 'To'
 #: ftw/securefiledownload/browser/sendtoextern.py
 msgid "To"
 msgstr "An"
 
-#. Default: 'From'
-#: ftw/securefiledownload/browser/sendtoextern.py
-msgid "From"
-msgstr "Von"
-
 #. Default: 'File downloaded'
-#: ftw/securefiledownload/browser/sendtoextern.py
+#: ftw/securefiledownload/browser/downloadfile.py
 msgid "File downloaded"
 msgstr "Datei heruntergeladen"
+
+#. Default: 'received a download-link'
+#: ftw/securefiledownload/browser/sendtoextern.py
+msgid "received a download-link""
+msgstr "Download-Link erhalten"
+
+#. Default: 'received a download-link'
+#: ftw/securefiledownload/browser/sendtoextern_mail.pt
+msgid "ftwsfd_emailtext"
+msgstr "Sie haben eine Datei zum einmaligen Download erhalten.<br />Bitte laden Sie diese Datei innert 7 Tagen herunter, sonst verfällt die Gültigkeit."
+
+#. Default: 'Comment:'
+#: ftw/securefiledownload/browser/sendtoextern_mail.pt
+msgid "ftwsfd_commentdp"
+msgstr "Kommentar:"

@@ -12,6 +12,8 @@ from ftw.sendmail.composer import HTMLComposer
 from zope import component
 from zope.sendmail.interfaces import IMailer
 
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 logger = logging.getLogger('ftw.securefiledownload')
 
 def msg(request, message, mtype): 
@@ -23,6 +25,7 @@ info = lambda request, message: msg(request, message, "info")
 error = lambda request, message: msg(request, message, "error")
 
 class SendToExtern(BrowserView):
+    mailtemplate = ViewPageTemplateFile("sendtoextern_mail.pt")
     def __call__(self):
         email=self.request.get("email","")
         comment=self.request.get("comment","")
@@ -34,9 +37,14 @@ class SendToExtern(BrowserView):
                 error(self.request,_(u"Enter a comment"))
             else:
                 hash=self.create(email)
-                link="http://localhost:8080/emt-kva.teamraum.ch/platform/download_file?token="+hash
-                
-                composer = HTMLComposer('Guten Tag<br /><br />BLABLABLA schickt Ihnen eine Datei zum <b>einmaligen</b> Download.<br />Bitte innert einer Woche herunterladen! Ansonsten verfällt der Download.<br /><br />link: %s <br />kommentar: %s'%(link,comment), 'Download-Link erhalten', [(email,email)])
+                self.link="%s/download_file?token=%s" %(
+                    self.context.portal_url(),
+                    hash
+                )
+                self.comment = comment
+                html = self.mailtemplate()
+                plone = self.context.portal_url.getPortalObject()
+                composer = HTMLComposer(html, '[%s] %s'%(plone.Title(),(u"received a download-link")), [(email,email)])
                 try:
                     email_message = composer.render()
                 except Exception, e:
@@ -46,7 +54,6 @@ class SendToExtern(BrowserView):
                     smtp = component.getUtility(IMailer, 'plone.smtp')
                     smtp.update_settings()
                     smtp.send(email_message['From'], email_message['To'], email_message.as_string())
-                    
                     notify(JournalEntryEvent(self.context, _(u"To")+": "+email, _(u"File sent to external")))
                     info(self.request,_(u"The file has been sent"))
         return super(SendToExtern,self).__call__()

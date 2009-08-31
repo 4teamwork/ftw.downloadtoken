@@ -11,7 +11,7 @@
         class=".sendtoextern.SendToExtern"
         template="sendtoextern.pt"
         permission="zope2.View" />
-        
+
     <browser:page
          name="download_file"
          for="*"
