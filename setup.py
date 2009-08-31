@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = open("ftw/securefiledownload/version.txt")
+version = open("ftw/securefiledownload/version.txt").read().strip()
 maintainer = "Julian Infanger"
 
 setup(name='ftw.securefiledownload',
