@@ -42,14 +42,29 @@ msgstr "Geben Sie einen Kommentar ein"
 #. Default: 'The file has been sent'
 #: ftw/securefiledownload/browser/sendtoextern.py
 msgid "The file has been sent"
-msgstr "Das Dokument wurde verschickt"
+msgstr "Das Datei wurde verschickt"
 
 #. Default: 'File sent to external'
 #: ftw/securefiledownload/browser/sendtoextern.py
 msgid "File sent to external"
-msgstr "Dokument an externe Person verschickt"
+msgstr "Datei an externe Person verschickt"
+
+#. Default: 'There is appeard an errorl'
+#: ftw/securefiledownload/browser/sendtoextern.py
+msgid "There is appeard an error"
+msgstr "Es ist ein Fehler aufgetreten"
 
 #. Default: 'To'
 #: ftw/securefiledownload/browser/sendtoextern.py
 msgid "To"
 msgstr "An"
+
+#. Default: 'From'
+#: ftw/securefiledownload/browser/sendtoextern.py
+msgid "From"
+msgstr "Von"
+
+#. Default: 'File downloaded'
+#: ftw/securefiledownload/browser/sendtoextern.py
+msgid "File downloaded"
+msgstr "Datei heruntergeladen"

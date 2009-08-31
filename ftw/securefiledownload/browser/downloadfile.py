@@ -1,12 +1,11 @@
 import logging
+from zope.event import notify
+from ftw.journal.events.events import JournalEntryEvent
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 from zope.component import getAdapter
-from ftw.journal.events.events import JournalEntryEvent
-from zope.event import notify
 from Products.CMFCore.utils import getToolByName
 from ftw.securefiledownload import securefiledownloadMessageFactory as _
-
 from AccessControl import SecurityManagement
 
 logger = logging.getLogger('ftw.securefiledownload')
@@ -23,12 +22,7 @@ class DownloadFile(BrowserView):
         token=self.request.get("token","")
         if self.exists(token):
             perm = self.get(token)
-            info(self.request,"Korrekter hash...")
-            info(self.request,"email: %s / file: %s"%(perm.email,perm.uid))
-            notify(JournalEntryEvent(self.context, _(u"From")+": "+perm.email, _(u"File downloaded")))
-            # benutzer wechseln
-            return self.get_file_by_uid(perm.uid)
-            # benutzer zurück
+            return self.send_file(perm)
         else:
             error(self.request,"Leider kein korrekter hash")
         return self.request.RESPONSE.redirect("view")
@@ -40,13 +34,13 @@ class DownloadFile(BrowserView):
     def get(self, hash):
         manager = getAdapter(self.context.portal_url.getPortalObject(), name='download_permission_manager')
         perm = manager.get_download_permission(hash=hash)
-        print perm, perm.hash
         # remove
         manager.invalidate_download_permission(perm)
         return perm
         
-    def get_file_by_uid(self,uid):
+    def send_file(self,perm):
         reference_tool = getToolByName(self.context, 'reference_catalog')
-        obj = reference_tool.lookupObject(uid)
+        obj = reference_tool.lookupObject(perm.uid)
         file = obj.getFile()
+        notify(JournalEntryEvent(obj, _(u"From")+": "+perm.email, _(u"File downloaded")))
         return file.download(self.request)
