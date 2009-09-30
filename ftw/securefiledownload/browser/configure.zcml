@@ -7,7 +7,7 @@
   
    <browser:page
         name="send_to_extern"
-        for="emtkva.file.interfaces.IFile"
+        for="Products.ATContentTypes.interface.file.IATFile"
         class=".sendtoextern.SendToExtern"
         template="sendtoextern.pt"
         permission="zope2.View" />
