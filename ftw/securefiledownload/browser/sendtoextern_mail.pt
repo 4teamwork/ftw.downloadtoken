@@ -11,6 +11,10 @@
 	        Please download this file within 7 days, or it will be no longer aviable.
 	    </p>
         <br /><br />
+        <u>User:</u><br />
+        <span tal:replace="view/user"/><br /><br />
+        <u>Datum:</u><br />
+        <span tal:replace="python:here.toLocalizedTime(view.date, long_format=0)"/><br /><br />
         <u>Link:</u><br />
         <span tal:replace="view/link"/><br /><br />
         <u i18n:translate="ftwsfd_commentdp">Comment:</u><br />

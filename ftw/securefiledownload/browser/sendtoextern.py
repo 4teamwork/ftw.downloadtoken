@@ -1,18 +1,22 @@
 import re
 import logging
+
 from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
-from ftw.securefiledownload import securefiledownloadMessageFactory as _
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from zope.event import notify
-from ftw.journal.events.events import JournalEntryEvent
 from zope.component import getAdapter
-
-from ftw.sendmail.composer import HTMLComposer
 from zope import component
 from zope.sendmail.interfaces import IMailer
 
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from ftw.journal.events.events import JournalEntryEvent
+from ftw.securefiledownload import securefiledownloadMessageFactory as _
+from ftw.sendmail.composer import HTMLComposer
+
+from AccessControl import getSecurityManager
+
+from DateTime import DateTime
 
 logger = logging.getLogger('ftw.securefiledownload')
 
@@ -30,6 +34,8 @@ class SendToExtern(BrowserView):
         email=self.request.get("email","")
         comment=self.request.get("comment","")
         submit=self.request.get("submit","")
+        self.date=DateTime()
+        self.user=getSecurityManager().getUser()
         if submit:
             if not self.isEmail(email):
                 error(self.request,_(u"Enter a valid email address"))
