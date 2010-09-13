@@ -10,13 +10,17 @@
                 <form action="" method="post" name="form">
                     <table>
                         <tr>
-                            <td>
-                                Email
+                            <td i18n:translate="">
+                                Email 
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="email" tal:attributes="value python:request.get('email','')" value="" />
+                                <input type="text"
+                                       name="emails"
+                                       tal:attributes="value python:request.get('emails','')"
+                                       value=""
+                                       />
                             </td>
                         </tr>
                         <tr>
@@ -26,12 +30,20 @@
                         </tr>
                         <tr>
                             <td>
-                                <textarea name="comment" cols="50" rows="10" tal:content="python:request.get('comment','')"></textarea>
+                                <textarea name="comment"
+                                          cols="50"
+                                          rows="10"
+                                          tal:content="python:request.get('comment','')">
+                                </textarea>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="submit" i18n:attributes="value ftwsfd_send" value="send file" name="submit"/>
+                                <input type="submit"
+                                       i18n:attributes="value ftwsfd_send"
+                                       value="send file"
+                                       name="submit"
+                                       />
                             </td>
                         </tr>
                     </table>
