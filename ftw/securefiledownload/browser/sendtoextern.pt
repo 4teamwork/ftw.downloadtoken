@@ -18,6 +18,7 @@
                             <td>
                                 <input type="text"
                                        name="emails"
+                                       size="60"
                                        tal:attributes="value python:request.get('emails','')"
                                        value=""
                                        />
