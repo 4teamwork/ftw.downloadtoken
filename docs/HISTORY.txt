@@ -2,10 +2,12 @@ Changelog
 =========
 
 
-0.4
+1.0
 ---
+
 * [14.09.2010] Translations [jinfanger]
-* [13.09.2010] Mehrere Empfänger definierbar [jinfanger]
+
+* [13.09.2010] Mehrere Empfaenger definierbar [jinfanger]
 
 0.3
 ---
