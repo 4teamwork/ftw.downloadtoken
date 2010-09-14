@@ -4,6 +4,7 @@ Changelog
 
 0.4
 ---
+* [14.09.2010] Translations [jinfanger]
 * [13.09.2010] Mehrere Empfänger definierbar [jinfanger]
 
 0.3
