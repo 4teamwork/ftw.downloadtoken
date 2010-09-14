@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2010-09-13 08:21+0000\n"
+"POT-Creation-Date: 2010-09-14 08:18+0000\n"
 "PO-Revision-Date: 2009-08-22 11:00+0100\n"
 "Last-Translator: Julian Infanger <julian.infanger@4teamwork.ch>\n"
 "Language-Team: Julian Infanger <julian.infanger@4teamwork.ch>\n"
@@ -64,7 +64,7 @@ msgid "ftwsfd_comment"
 msgstr "Kommentar"
 
 #. Default: "Comment:"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:20
+#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:22
 msgid "ftwsfd_commentdp"
 msgstr "Kommentar:"
 
@@ -82,5 +82,9 @@ msgstr "Datei verschicken"
 #: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:9
 msgid "ftwsfd_send_to_external"
 msgstr "Datei an externe Person verschicken"
+
+#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:62
+msgid "received a download-link"
+msgstr "Sie haben einen Download-Link erhalten"
 
 

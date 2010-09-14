@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-09-13 08:21+0000\n"
+"POT-Creation-Date: 2010-09-14 08:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgid "ftwsfd_comment"
 msgstr ""
 
 #. Default: "Comment:"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:20
+#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:22
 msgid "ftwsfd_commentdp"
 msgstr ""
 
@@ -76,5 +76,9 @@ msgstr ""
 #. Default: "Send file to external"
 #: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:9
 msgid "ftwsfd_send_to_external"
+msgstr ""
+
+#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:62
+msgid "received a download-link"
 msgstr ""
 

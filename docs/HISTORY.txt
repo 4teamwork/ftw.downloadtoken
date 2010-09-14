@@ -5,6 +5,7 @@ Changelog
 1.1
 ---
 
+* [14.09.2010] Translations [jinfanger]
 
 1.0
 ---

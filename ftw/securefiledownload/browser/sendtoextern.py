@@ -59,7 +59,9 @@ class SendToExtern(BrowserView):
                         html,
                         '[%s] %s'%(
                             plone.Title(),
-                            (u"received a download-link")),
+                            self.context.translate(
+                                u"received a download-link",
+                                domain="ftw.securefiledownload")),
                         [(email, email)])
                     try:
                         email_message = composer.render()
