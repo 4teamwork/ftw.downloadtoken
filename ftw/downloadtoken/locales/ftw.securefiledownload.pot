@@ -15,70 +15,70 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: ftw.securefiledownload\n"
+"Domain: ftw.downloadtoken\n"
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:13
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:13
 msgid "Email"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:47
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:47
 msgid "Enter a comment"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:45
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:45
 msgid "Enter a valid email address"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/downloadfile.py:45
+#: ftw.downloadtoken/ftw/downloadtoken/browser/downloadfile.py:45
 msgid "File downloaded"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:79
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:79
 msgid "File sent to external"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/downloadfile.py:45
+#: ftw.downloadtoken/ftw/downloadtoken/browser/downloadfile.py:45
 msgid "From"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:80
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:80
 msgid "The file has been sent"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:68
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:68
 msgid "There is appeard an error"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:78
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:78
 msgid "To"
 msgstr ""
 
 #. Default: "Comment"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:27
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:27
 msgid "ftwsfd_comment"
 msgstr ""
 
 #. Default: "Comment:"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:22
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern_mail.pt:22
 msgid "ftwsfd_commentdp"
 msgstr ""
 
 #. Default: "You received a link for a unique download. <br /> Please download this file within 7 days, or it will be no longer aviable."
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:9
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern_mail.pt:9
 msgid "ftwsfd_emailtext"
 msgstr ""
 
 #. Default: "send file"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:42
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:42
 msgid "ftwsfd_send"
 msgstr ""
 
 #. Default: "Send file to external"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:9
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:9
 msgid "ftwsfd_send_to_external"
 msgstr ""
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:62
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:62
 msgid "received a download-link"
 msgstr ""
 

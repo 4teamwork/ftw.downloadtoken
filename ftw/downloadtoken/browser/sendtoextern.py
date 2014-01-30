@@ -11,14 +11,14 @@ from zope import component
 from zope.sendmail.interfaces import IMailer
 
 from ftw.journal.events.events import JournalEntryEvent
-from ftw.securefiledownload import securefiledownloadMessageFactory as _
+from ftw.downloadtoken import downloadtokenMessageFactory as _
 from ftw.sendmail.composer import HTMLComposer
 
 from AccessControl import getSecurityManager
 
 from DateTime import DateTime
 
-logger = logging.getLogger('ftw.securefiledownload')
+logger = logging.getLogger('ftw.downloadtoken')
 
 
 def msg(request, message, mtype):
@@ -61,7 +61,7 @@ class SendToExtern(BrowserView):
                             plone.Title(),
                             self.context.translate(
                                 u"received a download-link",
-                                domain="ftw.securefiledownload")),
+                                domain="ftw.downloadtoken")),
                         [(email, email)])
                     try:
                         email_message = composer.render()

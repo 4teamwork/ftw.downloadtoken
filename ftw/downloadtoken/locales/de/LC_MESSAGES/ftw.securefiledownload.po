@@ -1,4 +1,4 @@
-# ftw.securefiledownload
+# ftw.downloadtoken
 # Julian Infanger <julian.infanger@4teamwork.ch>, 2009
 msgid ""
 msgstr ""
@@ -12,78 +12,78 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: ftw.securefiledownload\n"
+"Domain: ftw.downloadtoken\n"
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:13
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:13
 msgid "Email"
 msgstr "Email-Adressen (mit Komma getrennt)"
 
 #. Default: 'Enter a comment'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:47
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:47
 msgid "Enter a comment"
 msgstr "Geben Sie einen Kommentar ein"
 
 #. Default: 'Enter a valid email address'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:45
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:45
 msgid "Enter a valid email address"
 msgstr "Mindestens eine Email Adresse ist nicht gültig"
 
 #. Default: 'File downloaded'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/downloadfile.py:45
+#: ftw.downloadtoken/ftw/downloadtoken/browser/downloadfile.py:45
 msgid "File downloaded"
 msgstr "Datei heruntergeladen"
 
 #. Default: 'File sent to external'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:79
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:79
 msgid "File sent to external"
 msgstr "Datei an externe Person verschickt"
 
 #. Default: 'From'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/downloadfile.py:45
+#: ftw.downloadtoken/ftw/downloadtoken/browser/downloadfile.py:45
 msgid "From"
 msgstr "Von"
 
 #. Default: 'The file has been sent'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:80
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:80
 msgid "The file has been sent"
 msgstr "Das Datei wurde verschickt"
 
 #. Default: 'There is appeard an errorl'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:68
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:68
 msgid "There is appeard an error"
 msgstr "Es ist ein Fehler aufgetreten"
 
 #. Default: 'To'
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:78
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:78
 msgid "To"
 msgstr "An"
 
 #. Default: "Comment"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:27
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:27
 msgid "ftwsfd_comment"
 msgstr "Kommentar"
 
 #. Default: "Comment:"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:22
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern_mail.pt:22
 msgid "ftwsfd_commentdp"
 msgstr "Kommentar:"
 
 #. Default: "You received a link for a unique download. <br /> Please download this file within 7 days, or it will be no longer aviable."
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern_mail.pt:9
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern_mail.pt:9
 msgid "ftwsfd_emailtext"
 msgstr "Sie haben eine Datei zum einmaligen Download erhalten.<br />Bitte laden Sie diese Datei innert 7 Tagen herunter, sonst verfällt die Gültigkeit."
 
 #. Default: "send file"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:42
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:42
 msgid "ftwsfd_send"
 msgstr "Datei verschicken"
 
 #. Default: "Send file to external"
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.pt:9
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.pt:9
 msgid "ftwsfd_send_to_external"
 msgstr "Datei an externe Person verschicken"
 
-#: ftw.securefiledownload/ftw/securefiledownload/browser/sendtoextern.py:62
+#: ftw.downloadtoken/ftw/downloadtoken/browser/sendtoextern.py:62
 msgid "received a download-link"
 msgstr "Sie haben einen Download-Link erhalten"
 

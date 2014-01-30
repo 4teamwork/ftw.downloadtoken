@@ -1,5 +1,5 @@
 # created by: svn propset svn:ignore -F ./IGNORE.TXT .
 
-ftw.securefiledownload.egg-info
+ftw.downloadtoken.egg-info
 build
 dist

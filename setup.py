@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 import os
 
-version = open("ftw/securefiledownload/version.txt").read().strip()
+version = open("ftw/downloadtoken/version.txt").read().strip()
 maintainer = "Julian Infanger"
 
-setup(name='ftw.securefiledownload',
+setup(name='ftw.downloadtoken',
       version=version,
       description="maintainer: %s"%maintainer,
       long_description=open("README.txt").read() + "\n" +
@@ -17,7 +17,7 @@ setup(name='ftw.securefiledownload',
       keywords='',
       author='%s, 4teamwork GmbH'%maintainer,
       author_email='mailto:info@4teamwork.ch',
-      url='http://psc.4teamwork.ch/4teamwork/ftw/ftw.securefiledownload/',
+      url='http://psc.4teamwork.ch/4teamwork/ftw/ftw.downloadtoken/',
       license='GPL2',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['ftw'],

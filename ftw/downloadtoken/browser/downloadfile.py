@@ -5,10 +5,10 @@ from Products.statusmessages.interfaces import IStatusMessage
 from Products.Five.browser import BrowserView
 from zope.component import getAdapter
 from Products.CMFCore.utils import getToolByName
-from ftw.securefiledownload import securefiledownloadMessageFactory as _
+from ftw.downloadtoken import downloadtokenMessageFactory as _
 from AccessControl import SecurityManagement
 
-logger = logging.getLogger('ftw.securefiledownload')
+logger = logging.getLogger('ftw.downloadtoken')
 def msg(request, message, mtype): 
     IStatusMessage(request).addStatusMessage(message, type=mtype)
     getattr(logger, mtype)(message)
