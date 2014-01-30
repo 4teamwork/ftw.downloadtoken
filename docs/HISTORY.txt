@@ -2,34 +2,38 @@ Changelog
 =========
 
 
-1.2
----
+1.2.0 (unreleased)
+------------------
 
-* Rename package to ftw.downloadtoken.
+- Rename package to ftw.downloadtoken.
   [mathias.leimgruber]
 
 
-1.1
----
+1.1 (2010-09-14)
+----------------
 
-* [14.09.2010] Translations [jinfanger]
+- Translations
+  [jinfanger]
 
-1.0
----
 
-* [14.09.2010] Translations [jinfanger]
+1.0 (2010-09-14)
+----------------
 
-* [13.09.2010] Mehrere Empfaenger definierbar [jinfanger]
+- Translations
+  [jinfanger]
 
-0.3
----
-* [26.10.2009] EMail Text beinhaltet auch Absender und Datum des Dokument-Versandes [jin]
+- Multiple recipients
+  [jinfanger]
 
-0.2
----
+
+0.3 (2009-10-26)
+----------------
+
+- Add date of token generation to email.
+  [jinfanger]
 
 0.1
 ---
-* implemented securefiledownload
-* Initial release
 
+- Initial release
+  [jinfanger]
