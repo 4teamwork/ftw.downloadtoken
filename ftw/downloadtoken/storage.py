@@ -54,3 +54,7 @@ class DownloadTokenStorage(object):
             if downloadtoken.token == token:
                 return downloadtoken
         return None
+
+    def url(self, downloadtoken):
+        return '{0}/download-token?token={1}'.format(
+            self.context.portal_url(), downloadtoken.token)

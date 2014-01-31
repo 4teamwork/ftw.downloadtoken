@@ -90,3 +90,15 @@ class TestStorage(TestCase):
 
         storage.add(file_, 'name@example.com')
         self.assertIsNone(storage.get_downloadtoken('12345'))
+
+    def test_downloadtoken_url(self):
+        storage = IDownloadTokenStorage(self.portal)
+        file_ = create(Builder('file'))
+
+        added = storage.add(file_, 'name@example.com')
+
+        url = '{0}/download-token?token={1}'.format(
+            self.portal.portal_url(),
+            added.token)
+
+        self.assertEquals(url, storage.url(added))
