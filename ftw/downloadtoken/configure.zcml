@@ -7,7 +7,6 @@
 
     <include package="ftw.sendmail" />
 
-  <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales" />
   
   <!-- Include the sub-packages that use their own configure.zcml files. -->

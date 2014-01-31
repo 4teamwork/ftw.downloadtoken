@@ -4,6 +4,11 @@ import os
 version = '1.2.0-dev0'
 maintainer = "Julian Infanger"
 
+tests_require = ['ftw.testbrowser',
+                 'ftw.builder',
+                 'plone.app.testing',
+                 ]
+
 setup(name='ftw.downloadtoken',
       version=version,
       description='Grants temporary access to a specific download-able '
@@ -32,9 +37,13 @@ setup(name='ftw.downloadtoken',
       namespace_packages=['ftw'],
       include_package_data=True,
       zip_safe=False,
+      tests_require=tests_require,
+      extras_require=dict(tests=tests_require),
+
       install_requires=[
           'setuptools',
           'ftw.sendmail',
+          'ftw.journal',
       ],
       entry_points="""
       # -*- Entry points: -*-
