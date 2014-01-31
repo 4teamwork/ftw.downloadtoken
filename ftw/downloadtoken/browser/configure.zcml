@@ -4,7 +4,7 @@
     i18n_domain="ftw.downloadtoken">
 
    <include package="plone.app.contentmenu" />
-  
+
    <browser:page
         name="send_to_extern"
         for="Products.ATContentTypes.interface.file.IATFile"
@@ -13,11 +13,9 @@
         permission="zope2.View" />
 
     <browser:page
-         name="download_file"
-         for="*"
+         name="download-token"
+         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
          class=".downloadfile.DownloadFile"
          permission="zope2.View" />
-        
-  <!-- -*- extra stuff goes here -*- -->
 
 </configure>

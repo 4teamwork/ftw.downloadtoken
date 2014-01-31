@@ -16,3 +16,6 @@ class IDownloadTokenStorage(Interface):
     def get_downloadtoken(token):
         """Get downloadtoken by token"""
 
+    def url(downloadtoken):
+        """Generate the url based on a downloadtoken"""
+

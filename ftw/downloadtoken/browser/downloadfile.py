@@ -1,46 +1,55 @@
-import logging
-from zope.event import notify
-from ftw.journal.events.events import JournalEntryEvent
-from Products.statusmessages.interfaces import IStatusMessage
-from Products.Five.browser import BrowserView
-from zope.component import getAdapter
+from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from Products.CMFCore.utils import getToolByName
-from ftw.downloadtoken import downloadtokenMessageFactory as _
-from AccessControl import SecurityManagement
+from Products.Five.browser import BrowserView
+from zExceptions import BadRequest
+from zExceptions import NotFound
+import AccessControl
 
-logger = logging.getLogger('ftw.downloadtoken')
-def msg(request, message, mtype): 
-    IStatusMessage(request).addStatusMessage(message, type=mtype)
-    getattr(logger, mtype)(message)
-    
-warn = lambda request, message: msg(request, message, "warn")
-info = lambda request, message: msg(request, message, "info")
-error = lambda request, message: msg(request, message, "error")
+
+class SwitchedToSystemUser(object):
+    """Switch temp. to System user
+    """
+
+    def __init__(self):
+        self._original_security = None
+
+    def __enter__(self):
+        assert self._original_security is None
+
+        self._original_security = AccessControl.getSecurityManager()
+
+        _system_user = AccessControl.SecurityManagement.SpecialUsers.system
+        AccessControl.SecurityManagement.newSecurityManager(None, _system_user)
+
+    def __exit__(self, _exc_type, _exc_value, _traceback):
+        AccessControl.SecurityManagement.setSecurityManager(
+            self._original_security)
+        self._original_security = None
+
 
 class DownloadFile(BrowserView):
     def __call__(self):
-        token=self.request.get("token","")
-        if self.exists(token):
-            perm = self.get(token)
-            return self.send_file(perm)
-        else:
-            error(self.request,"Leider kein korrekter hash")
-        return self.request.RESPONSE.redirect("view")
-        
-    def exists(self, hash):
-        manager = getAdapter(self.context.portal_url.getPortalObject(), name='download_permission_manager')
-        return manager.download_permission_exists(hash)
-        
-    def get(self, hash):
-        manager = getAdapter(self.context.portal_url.getPortalObject(), name='download_permission_manager')
-        perm = manager.get_download_permission(hash=hash)
-        # remove
-        manager.invalidate_download_permission(perm)
-        return perm
-        
-    def send_file(self,perm):
-        reference_tool = getToolByName(self.context, 'reference_catalog')
-        obj = reference_tool.lookupObject(perm.uid)
-        file = obj.getFile()
-        notify(JournalEntryEvent(obj, _(u"From")+": "+perm.email, _(u"File downloaded")))
-        return file.download(self.request)
+        token = self.request.get('token', None)
+        if token is None:
+            raise BadRequest('No token')
+
+        storage = IDownloadTokenStorage(self.context)
+        downloadtoken = storage.get_downloadtoken(token)
+
+        if downloadtoken is None:
+            raise BadRequest('No valid token')
+
+        return self.download_file(downloadtoken)
+
+    def download_file(self, downloadtoken):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        result = catalog.unrestrictedSearchResults(
+            dict(UID=downloadtoken.uuid))
+
+        if len(result) != 1:
+            raise NotFound
+
+        with SwitchedToSystemUser():
+            obj = result[0].getObject()
+            field = obj.getPrimaryField()
+            return field.index_html(obj, disposition='attachment')
