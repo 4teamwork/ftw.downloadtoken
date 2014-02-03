@@ -1,0 +1,15 @@
+<p i18n:translate="ftwsfd_emailtext">
+    You received a link for a unique download. <br />
+    Please download this file within 7 days, or it will be no longer aviable.
+</p>
+<br /><br />
+<u>User:</u><br />
+<span tal:replace="options/user"/><br /><br />
+<u>Datum:</u><br />
+<span tal:replace="python:here.toLocalizedTime(options['date'], long_format=0)"/><br /><br />
+<u>Link:</u><br />
+<a tal:attributes="href options/link"
+   tal:content="options/link"></a>
+<br /><br />
+<u i18n:translate="ftwsfd_commentdp">Comment:</u><br />
+<span tal:replace="options/comment"/>

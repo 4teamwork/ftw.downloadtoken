@@ -6,11 +6,17 @@
    <include package="plone.app.contentmenu" />
 
    <browser:page
-        name="send_to_extern"
-        for="Products.ATContentTypes.interface.file.IATFile"
-        class=".sendtoextern.SendToExtern"
-        template="sendtoextern.pt"
+        name="send-mail-form"
+        for="*"
+        class=".sendmail.SendMailForm"
         permission="zope2.View" />
+
+   <browser:page
+        name="mail_downloadtoken"
+        for="*"
+        template="mail_downloadtoken.pt"
+        permission="zope2.View" />
+
 
     <browser:page
          name="download-token"

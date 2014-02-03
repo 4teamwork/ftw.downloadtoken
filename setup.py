@@ -6,6 +6,7 @@ maintainer = "Julian Infanger"
 
 tests_require = ['ftw.testbrowser',
                  'ftw.builder',
+                 'ftw.testing',
                  'plone.app.testing',
                  ]
 
@@ -44,6 +45,7 @@ setup(name='ftw.downloadtoken',
           'setuptools',
           'ftw.sendmail',
           'ftw.journal',
+          'plone.api',
       ],
       entry_points="""
       # -*- Entry points: -*-
