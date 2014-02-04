@@ -3,15 +3,15 @@ from ftw.downloadtoken import _
 from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from ftw.sendmail.composer import HTMLComposer
 from plone import api
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import button
 from z3c.form import form
 from z3c.form.field import Fields
 from zope import schema
-from zope.component import getUtility
 from zope.i18n import translate
 from zope.interface import Interface
-from zope.sendmail.interfaces import IMailer
+from zope.interface import Invalid
+from zope.interface import invariant
+import re
 
 
 class ISendMailSchema(Interface):
@@ -26,6 +26,19 @@ class ISendMailSchema(Interface):
     comment = schema.Text(
         title=_(u'label_comment', default=u'Comment'),
         required=False)
+
+    @invariant
+    def valid_email_addresses(data):
+        expr = re.compile(r"^(\w&.%#$&'\*+-/=?^_`{}|~]+!)*[\w&.%#$&'\*+-/=" +
+                          r"?^_`{}|~]+@(([0-9a-z]([0-9a-z-]*[0-9a-z])?" +
+                          r"\.)+[a-z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$",
+                          re.IGNORECASE)
+
+        for mail in data.recipients.split('\n'):
+            if not expr.match(mail):
+                raise Invalid(_(u'text_error_invalid_email',
+                                default=u'You entered one or more invalid '
+                                         'email addresses.'))
 
 
 class SendMailForm(form.Form):
