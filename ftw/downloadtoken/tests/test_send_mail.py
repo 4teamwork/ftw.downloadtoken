@@ -79,3 +79,17 @@ class TestStorage(TestCase):
             browser.visit(self.file_)
 
         self.assertEquals('Test data', browser.contents)
+
+    @browsing
+    def test_multiple_recipients(self, browser):
+        browser.login().visit(self.file_, view='send-mail-form')
+        browser.fill({'Recipients': 'email@example.com\nemail2@example.com'})
+        browser.find('Send').click()
+
+        self.assertEquals(2,
+                          len(self.mails.get_messages()),
+                          'Expect two messages')
+
+        self.assertEquals(2,
+                          len(self.storage.get_storage()),
+                          'Expect two items')
