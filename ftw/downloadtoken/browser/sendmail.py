@@ -81,7 +81,7 @@ class SendMailForm(form.Form):
         self.redirect()
 
     def redirect(self):
-        url = self.context.absolute_url()
+        url = '{0}/view'.format(self.context.absolute_url())
         return self.request.RESPONSE.redirect(url)
 
     def send_mail(self, data):
