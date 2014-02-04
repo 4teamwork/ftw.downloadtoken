@@ -44,6 +44,7 @@ class DownloadTokenStorage(object):
                             uuid=IUUID(obj),
                             email=email)
         self.get_storage().append(new)
+        self.cleanup()
         return new
 
     def remove(self, downloadtoken):
@@ -58,3 +59,8 @@ class DownloadTokenStorage(object):
     def url(self, downloadtoken):
         return '{0}/download-token?token={1}'.format(
             self.context.portal_url(), downloadtoken.token)
+
+    def cleanup(self):
+        for downloadtoken in tuple(self.get_storage()):
+            if (datetime.now() - downloadtoken.expiration_date).days > 7:
+                self.remove(downloadtoken)

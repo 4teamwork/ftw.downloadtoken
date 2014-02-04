@@ -4,13 +4,24 @@ Introduction
 ``ftw.downloadtoken`` allows you to grant temporary access to a specific
 download-able content.
 
-You can send a email containing a url with token to one or multiple recipients.
+- You can send a email containing a url with token to one or multiple recipients.
+
+- Tokens are valid for 7 days.
+
+- By default ``ftw.downloadtoken`` works on `File` with the primaryField
+  'file'.
+
+- Expired download tokens will be removed automatically on every new generated
+  download token.
 
 
 Usage
 =====
 
-To be defined...
+Click the document action "Send download link".
+Enter one or more email addresses.
+Send link to recipients.
+
 
 
 Compatibility

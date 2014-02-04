@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import timedelta
 from ftw.builder import Builder
 from ftw.builder import create
 from ftw.downloadtoken.interfaces import IDownloadTokenStorage
@@ -102,3 +103,26 @@ class TestStorage(TestCase):
             added.token)
 
         self.assertEquals(url, storage.url(added))
+
+    def test_storage_cleanup(self):
+        storage = IDownloadTokenStorage(self.portal)
+        file_ = create(Builder('file'))
+        expiredtoken1 = storage.add(file_, 'email@example.com')
+        expiredtoken2 = storage.add(file_, 'email@example.com')
+
+        expiredtoken1.expiration_date = datetime.now() - timedelta(days=10)
+        expiredtoken2.expiration_date = datetime.now() - timedelta(days=20)
+
+        self.assertEquals(2,
+                          len(storage.get_storage()),
+                          'Expect two items')
+
+        validtoken = storage.add(file_, 'email@new.com')
+
+        self.assertEquals(1,
+                          len(storage.get_storage()),
+                          'Expect only the last added item. The others are '
+                          'expired and removed.')
+        self.assertEquals(validtoken.token,
+                          storage.get_storage()[0].token,
+                          'Found the wrong token.')
