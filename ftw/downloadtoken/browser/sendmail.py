@@ -5,6 +5,7 @@ from ftw.sendmail.composer import HTMLComposer
 from plone import api
 from z3c.form import button
 from z3c.form import form
+from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.field import Fields
 from zope import schema
 from zope.i18n import translate
@@ -17,7 +18,8 @@ import re
 class ISendMailSchema(Interface):
     """Send mail schema"""
 
-    recipients = schema.Text(
+    recipients = schema.List(
+        value_type=schema.TextLine(),
         title=_(u'label_recipients', default=u'Recipients'),
         description=_(u'help_recipients',
                       default=u'One email address per line'),
@@ -34,7 +36,7 @@ class ISendMailSchema(Interface):
                           r"\.)+[a-z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$",
                           re.IGNORECASE)
 
-        for mail in data.recipients.split('\n'):
+        for mail in data.recipients:
             if not expr.match(mail):
                 raise Invalid(_(u'text_error_invalid_email',
                                 default=u'You entered one or more invalid '
@@ -51,6 +53,7 @@ class SendMailForm(form.Form):
 
     def updateWidgets(self):
         super(SendMailForm, self).updateWidgets()
+        self.widgets['recipients'].widgetFactory = TextLinesWidget
         self.widgets['recipients'].rows = 8
 
     def updateActions(self):
@@ -63,7 +66,6 @@ class SendMailForm(form.Form):
         data, errors = self.extractData()
         if errors:
             return
-
         self.send_mail(data)
 
         api.portal.show_message(
@@ -87,8 +89,6 @@ class SendMailForm(form.Form):
         storage = IDownloadTokenStorage(portal)
         mail_template = self.context.restrictedTraverse('@@mail_downloadtoken')
 
-        recipients = data['recipients'].encode('utf-8')
-        recipients = data['recipients'].split('\n')
         comment = data['comment']
         subject = translate(_(u'mail_subject',
                               default=u'[${title}] Download link',
@@ -96,7 +96,7 @@ class SendMailForm(form.Form):
                                   'utf-8')}),
                             context=self.request)
 
-        for email in recipients:
+        for email in data['recipients']:
             downloadtoken = storage.add(self.context, email)
 
             options = {'user': api.user.get_current(),
