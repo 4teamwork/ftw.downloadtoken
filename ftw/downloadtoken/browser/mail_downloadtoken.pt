@@ -1,15 +1,18 @@
-<p i18n:translate="ftwsfd_emailtext">
-    You received a link for a unique download. <br />
-    Please download this file within 7 days, or it will be no longer aviable.
-</p>
-<br /><br />
-<u>User:</u><br />
-<span tal:replace="options/user"/><br /><br />
-<u>Datum:</u><br />
-<span tal:replace="python:here.toLocalizedTime(options['date'], long_format=0)"/><br /><br />
-<u>Link:</u><br />
-<a tal:attributes="href options/link"
-   tal:content="options/link"></a>
-<br /><br />
-<u i18n:translate="ftwsfd_commentdp">Comment:</u><br />
-<span tal:replace="options/comment"/>
+
+<tal:block i18n:domain="ftw.downloadtoken">
+  <p i18n:translate="mail_text_heading">
+      You received a link for a unique download. <br />
+      Please download this file within 7 days, or it will be no longer aviable.
+  </p>
+  <br /><br />
+  <b i18n:translate="mail_label_user">User:</b><br />
+  <span tal:replace="options/user"/><br /><br />
+  <b i18n:translate="mail_label_date">Datum:</b><br />
+  <span tal:replace="python:here.toLocalizedTime(options['date'], long_format=0)"/><br /><br />
+  <b i18n:translate="mail_label_link">Link:</b><br />
+  <a tal:attributes="href options/link"
+     tal:content="options/link"></a>
+  <br /><br />
+  <b i18n:translate="mail_label_comment">Comment:</b><br />
+  <span tal:replace="options/comment"/>
+</tal:block>
