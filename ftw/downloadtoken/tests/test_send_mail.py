@@ -37,6 +37,7 @@ class TestStorage(TestCase):
 
         folder = create(Builder('folder').in_state('private'))
         self.file_ = create(Builder('file')
+            .titled('\xc3\xa4 file')
             .with_dummy_content()
             .within(folder))
 
@@ -103,3 +104,6 @@ class TestStorage(TestCase):
 
         statusmessages.error_messages()
         self.assertFalse(len(self.storage.get_storage()), 'Expect no tokens.')
+
+        browser.fill({'Recipients': u'em\xe4il@example'})
+        statusmessages.error_messages()
