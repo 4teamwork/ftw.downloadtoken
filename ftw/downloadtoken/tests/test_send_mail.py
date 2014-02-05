@@ -54,7 +54,8 @@ class TestStorage(TestCase):
                           len(self.mails.get_messages()),
                           'Expect one message')
 
-        self.assertEquals(self.file_.absolute_url(), browser.url)
+        self.assertEquals('{0}/view'.format(self.file_.absolute_url()),
+                          browser.url)
 
     @browsing
     def test_cancel_send_mail_form(self, browser):
@@ -65,7 +66,8 @@ class TestStorage(TestCase):
                           len(self.mails.get_messages()),
                           'Expect one message')
 
-        self.assertEquals(self.file_.absolute_url(), browser.url)
+        self.assertEquals('{0}/view'.format(self.file_.absolute_url()),
+                          browser.url)
 
     @browsing
     def test_link_in_mail(self, browser):

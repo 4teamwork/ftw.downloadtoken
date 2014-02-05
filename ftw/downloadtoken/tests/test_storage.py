@@ -76,7 +76,7 @@ class TestStorage(TestCase):
         storage.remove(added)
 
         self.assertFalse(len(storage.get_storage()),
-                        'Storage should be empty.')
+                         'Storage should be empty.')
 
     def test_get_downloadtoken_by_token(self):
         storage = IDownloadTokenStorage(self.portal)
