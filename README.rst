@@ -2,17 +2,32 @@ Introduction
 ============
 
 ``ftw.downloadtoken`` allows you to grant temporary access to a specific
-download-able content.
+downloadable content.
 
-- You can send a email containing a url with token to one or multiple recipients.
+- You can send a email containing an url with a token to one or more recipients.
 
 - Tokens are valid for 7 days.
 
-- By default ``ftw.downloadtoken`` works on `File` with the primaryField
-  'file'.
+- By default, ``ftw.downloadtoken`` works on ``File`` with the primaryField
+  ``file``.
 
 - Expired download tokens will be removed automatically on every new generated
   download token.
+
+
+Installation
+============
+
+- Add ``ftw.downloadtoken`` to your buildout configuration:
+
+::
+
+    [instance]
+    eggs +=
+        ftw.downloadtoken
+
+- Install the generic setup profile.
+
 
 
 Usage
