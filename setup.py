@@ -1,8 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2.0-dev0'
-maintainer = "Julian Infanger"
+version = '1.0.0-dev0'
 
 tests_require = ['ftw.testbrowser',
                  'ftw.builder',
@@ -12,7 +11,7 @@ tests_require = ['ftw.testbrowser',
 
 setup(name='ftw.downloadtoken',
       version=version,
-      description='Grants temporary access to a specific download-able '
+      description='Grants temporary access to a specific downloadable '
                   'content.',
       long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
@@ -44,7 +43,6 @@ setup(name='ftw.downloadtoken',
       install_requires=[
           'setuptools',
           'ftw.sendmail',
-          'ftw.journal',
           'plone.api',
       ],
       entry_points="""

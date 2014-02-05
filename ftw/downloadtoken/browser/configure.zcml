@@ -3,15 +3,15 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="ftw.downloadtoken">
 
-   <include package="plone.app.contentmenu" />
+    <include package="plone.app.contentmenu" />
 
-   <browser:page
+    <browser:page
         name="send-mail-form"
         for="*"
         class=".sendmail.SendMailForm"
         permission="zope2.View" />
 
-   <browser:page
+    <browser:page
         name="mail_downloadtoken"
         for="*"
         template="mail_downloadtoken.pt"
@@ -19,9 +19,9 @@
 
 
     <browser:page
-         name="download-token"
-         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-         class=".downloadfile.DownloadFile"
-         permission="zope2.View" />
+        name="download-token"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".downloadfile.DownloadFile"
+        permission="zope2.View" />
 
 </configure>
