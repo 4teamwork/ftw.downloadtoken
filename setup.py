@@ -43,7 +43,6 @@ setup(name='ftw.downloadtoken',
       install_requires=[
           'setuptools',
           'ftw.sendmail',
-          'ftw.journal',
           'plone.api',
       ],
       entry_points="""
