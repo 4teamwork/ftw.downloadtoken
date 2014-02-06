@@ -73,7 +73,7 @@ msgstr "[${title}] Download Link"
 #. Default: "You received a link for a unique download. <br /> Please download this file within 7 days, or it will be no longer aviable."
 #: ./ftw/downloadtoken/browser/mail_downloadtoken.pt:3
 msgid "mail_text_heading"
-msgstr "Sie haben einen Download Link für eine geschützte Datei erhalten, Sie können diese Datei während den nächsten 7 Tage herunterladen."
+msgstr "Sie haben einen Download Link für eine geschützte Datei erhalten. Sie können diese Datei während den nächsten 7 Tagen herunterladen."
 
 #. Default: "You entered one or more invalid email addresses."
 #: ./ftw/downloadtoken/browser/sendmail.py:41
