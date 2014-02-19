@@ -4,7 +4,8 @@ from Products.Five.browser import BrowserView
 from zExceptions import BadRequest
 from zExceptions import NotFound
 import AccessControl
-
+from zope.event import notify
+from ftw.downloadtoken.events import DownloadlinkOpened
 
 class SwitchedToSystemUser(object):
     """Switch temp. to System user
@@ -48,8 +49,8 @@ class DownloadFile(BrowserView):
 
         if len(result) != 1:
             raise NotFound
-
         with SwitchedToSystemUser():
             obj = result[0].getObject()
+            notify(DownloadlinkOpened(obj, downloadtoken.email))
             field = obj.getPrimaryField()
             return field.index_html(obj, disposition='attachment')

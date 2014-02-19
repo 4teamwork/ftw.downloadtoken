@@ -1,4 +1,4 @@
-from zope.interface import Interface
+from zope.interface import Interface, Attribute
 
 
 class IDownloadTokenStorage(Interface):
@@ -19,3 +19,16 @@ class IDownloadTokenStorage(Interface):
     def url(downloadtoken):
         """Generate the url based on a downloadtoken"""
 
+
+class IDownloadlinkSent(Interface):
+    """An event that can be fired to send notifications
+    """
+
+    emails = Attribute("")
+
+
+class IDownloadlinkOpened(Interface):
+    """An event that can be fired to send notifications
+    """
+
+    email = Attribute("")

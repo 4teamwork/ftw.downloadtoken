@@ -18,4 +18,10 @@
 
     <adapter factory=".storage.DownloadTokenStorage" />
 
+    <subscriber for=".events.DownloadlinkSent"
+                handler=".handlers.downloadlink_sent" />
+
+    <subscriber for=".events.DownloadlinkOpened"
+                handler=".handlers.downloadlink_opened" />
+
 </configure>

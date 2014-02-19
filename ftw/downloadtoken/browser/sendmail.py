@@ -13,6 +13,8 @@ from zope.interface import Interface
 from zope.interface import Invalid
 from zope.interface import invariant
 import re
+from ftw.downloadtoken.events import DownloadlinkSent
+from zope.event import notify
 
 
 class ISendMailSchema(Interface):
@@ -115,3 +117,4 @@ class SendMailForm(form.Form):
             mh.send(composed.as_string(),
                     mto=composed['To'],
                     mfrom=composed['From'])
+        notify(DownloadlinkSent(self.context, data['recipients']))
