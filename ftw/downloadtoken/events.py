@@ -7,9 +7,11 @@ class DownloadlinkSent(object):
     """Event for journal entries"""
     implements(IDownloadlinkSent)
 
-    def __init__(self, obj, email):
+    def __init__(self, obj, email, comment):
         self.obj = obj
         self.emails = email
+        self.comment = comment
+
 
 class DownloadlinkOpened(object):
     """Event for journal entries"""

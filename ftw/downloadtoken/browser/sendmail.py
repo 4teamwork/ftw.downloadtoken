@@ -117,4 +117,4 @@ class SendMailForm(form.Form):
             mh.send(composed.as_string(),
                     mto=composed['To'],
                     mfrom=composed['From'])
-        notify(DownloadlinkSent(self.context, data['recipients']))
+        notify(DownloadlinkSent(self.context, data['recipients'], comment))
