@@ -11,6 +11,8 @@ from zExceptions import Unauthorized
 import quopri
 import re
 import transaction
+from zope.component import eventtesting
+from ftw.journal.interfaces import IJournalEntryEvent
 
 
 def get_link_from_email(mail):
@@ -56,6 +58,19 @@ class TestStorage(TestCase):
 
         self.assertEquals('{0}/view'.format(self.file_.absolute_url()),
                           browser.url)
+
+    @browsing
+    def test_send_mail_journalized(self, browser):
+        eventtesting.clearEvents()
+        browser.login().visit(self.file_, view='send-mail-form')
+        browser.fill({'Recipients': 'email@example.com'})
+        browser.fill({'Comment': 'Test'})
+        browser.find('Send').click()
+        events = [e for e in eventtesting.getEvents()
+                  if IJournalEntryEvent.providedBy(e)]
+        self.assertEqual(1, len(events))
+        self.assertIn('email@example.com', self.file_.translate(events[0].action))
+        self.assertEqual(u'Test', events[0].comment)
 
     @browsing
     def test_cancel_send_mail_form(self, browser):

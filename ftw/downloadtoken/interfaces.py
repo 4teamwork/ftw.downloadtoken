@@ -25,6 +25,7 @@ class IDownloadlinkSent(Interface):
     """
 
     emails = Attribute("")
+    comment = Attribute("")
 
 
 class IDownloadlinkOpened(Interface):

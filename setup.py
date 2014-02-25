@@ -44,6 +44,7 @@ setup(name='ftw.downloadtoken',
           'setuptools',
           'ftw.sendmail',
           'plone.api',
+          'ftw.journal'
       ],
       entry_points="""
       # -*- Entry points: -*-

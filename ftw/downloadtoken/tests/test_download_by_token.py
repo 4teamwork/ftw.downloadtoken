@@ -9,7 +9,8 @@ from zExceptions import BadRequest
 from zExceptions import NotFound
 from zExceptions import Unauthorized
 import transaction
-
+from zope.component import eventtesting
+from ftw.journal.interfaces import IJournalEntryEvent
 
 class TestStorage(TestCase):
 
@@ -51,6 +52,26 @@ class TestStorage(TestCase):
         browser.open(url)
         self.assertEquals('Test data', browser.contents)
 
+    @browsing
+    def test_download_file_by_token_journal(self, browser):
+        eventtesting.clearEvents()
+        folder = create(Builder('folder').in_state('private'))
+        file_ = create(Builder('file')
+            .with_dummy_content()
+            .within(folder))
+
+        with self.assertRaises(Unauthorized):
+            browser.visit(file_)
+
+        downloadtoken = self.storage.add(file_, 'name@example.com')
+        url = self.storage.url(downloadtoken)
+        transaction.commit()
+        browser.open(url)
+        events = [e for e in eventtesting.getEvents()
+                  if IJournalEntryEvent.providedBy(e)]
+        self.assertEqual(1, len(events))
+        self.assertEqual(u'name@example.com', events[0].actor)
+        
     @browsing
     def test_download_fails_if_file_is_deleted(self, browser):
         folder = create(Builder('folder').in_state('private'))
