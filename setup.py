@@ -7,8 +7,10 @@ tests_require = ['ftw.testbrowser',
                  'ftw.builder',
                  'ftw.testing',
                  'plone.app.testing',
+                 'ftw.downloadtoken[journal]'
                  ]
-
+journal_require = ['ftw.journal',
+                   ]
 setup(name='ftw.downloadtoken',
       version=version,
       description='Grants temporary access to a specific downloadable '
@@ -38,13 +40,12 @@ setup(name='ftw.downloadtoken',
       include_package_data=True,
       zip_safe=False,
       tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
+      extras_require=dict(tests=tests_require, journal=journal_require),
 
       install_requires=[
           'setuptools',
           'ftw.sendmail',
           'plone.api',
-          'ftw.journal'
       ],
       entry_points="""
       # -*- Entry points: -*-
