@@ -1,18 +1,18 @@
+from Products.CMFPlone.utils import getToolByName
 from ftw.builder import Builder
 from ftw.builder import create
 from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from ftw.downloadtoken.testing import FTW_DOWNLOADTOKEN_FUNCTIONAL_TESTING
+from ftw.journal.interfaces import IJournalEntryEvent
 from ftw.testbrowser import browsing
 from ftw.testbrowser.pages import statusmessages
 from ftw.testing.mailing import Mailing
-from Products.CMFPlone.utils import getToolByName
 from unittest2 import TestCase
 from zExceptions import Unauthorized
+from zope.component import eventtesting
 import quopri
 import re
 import transaction
-from zope.component import eventtesting
-from ftw.journal.interfaces import IJournalEntryEvent
 
 
 def get_link_from_email(mail):
@@ -63,8 +63,8 @@ class TestStorage(TestCase):
     def test_send_mail_journalized(self, browser):
         eventtesting.clearEvents()
         browser.login().visit(self.file_, view='send-mail-form')
-        browser.fill({'Recipients': 'email@example.com'})
-        browser.fill({'Comment': 'Test'})
+        browser.fill({'Recipients': 'email@example.com',
+                      'Comment': 'Test'})
         browser.find('Send').click()
         events = [e for e in eventtesting.getEvents()
                   if IJournalEntryEvent.providedBy(e)]

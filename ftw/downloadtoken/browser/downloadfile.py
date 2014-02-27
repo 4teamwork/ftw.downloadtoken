@@ -1,11 +1,12 @@
-from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from ftw.downloadtoken.events import DownloadlinkOpened
+from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from zExceptions import BadRequest
 from zExceptions import NotFound
-import AccessControl
 from zope.event import notify
-from ftw.downloadtoken.events import DownloadlinkOpened
+import AccessControl
+
 
 class SwitchedToSystemUser(object):
     """Switch temp. to System user
