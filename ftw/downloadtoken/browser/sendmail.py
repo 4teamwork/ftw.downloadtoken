@@ -1,5 +1,6 @@
 from DateTime import DateTime
 from ftw.downloadtoken import _
+from ftw.downloadtoken.events import DownloadlinkSent
 from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from ftw.sendmail.composer import HTMLComposer
 from plone import api
@@ -8,13 +9,12 @@ from z3c.form import form
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.field import Fields
 from zope import schema
+from zope.event import notify
 from zope.i18n import translate
 from zope.interface import Interface
 from zope.interface import Invalid
 from zope.interface import invariant
 import re
-from ftw.downloadtoken.events import DownloadlinkSent
-from zope.event import notify
 
 
 class ISendMailSchema(Interface):
@@ -42,7 +42,7 @@ class ISendMailSchema(Interface):
             if not expr.match(mail):
                 raise Invalid(_(u'text_error_invalid_email',
                                 default=u'You entered one or more invalid '
-                                         'email addresses.'))
+                                'email addresses.'))
 
 
 class SendMailForm(form.Form):
@@ -72,7 +72,7 @@ class SendMailForm(form.Form):
 
         api.portal.show_message(
             message=_(u'text_send_mail',
-                default='The given recipients has been notified.'),
+                      default='The given recipients has been notified.'),
             request=self.request,
             type='info')
 

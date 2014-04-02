@@ -5,7 +5,12 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Code cleanup.
+  [mathias.leimgruber]
+
+- Implement optional dependency on ftw.journal, which allows you to add
+  a journal entry if someone sends a donwload token.
+  [tschanzt]
 
 
 1.0.0 (2014-02-07)
