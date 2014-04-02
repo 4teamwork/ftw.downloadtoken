@@ -1,12 +1,14 @@
 from ftw.builder.testing import BUILDER_LAYER
 from ftw.builder.testing import functional_session_factory
 from ftw.builder.testing import set_builder_session_factory
-from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import applyProfile
 from plone.app.testing import setRoles, TEST_USER_ID, TEST_USER_NAME, login
+from plone.testing import z2
+from zope.component import eventtesting
 from zope.configuration import xmlconfig
 
 
@@ -27,12 +29,14 @@ class FtwDownloadtokenLayer(PloneSandboxLayer):
         xmlconfig.file('configure.zcml', ftw.downloadtoken,
                        context=configurationContext)
 
+        z2.installProduct(app, 'ftw.journal')
+
     def setUpPloneSite(self, portal):
-        #applyProfile(portal, 'ftw.downloadtoken:default')
+        applyProfile(portal, 'ftw.downloadtoken:default')
 
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
-
+        eventtesting.setUp()
 
 FTW_DOWNLOADTOKEN_FIXTURE = FtwDownloadtokenLayer()
 FTW_DOWNLOADTOKEN_INTEGRATION_TESTING = IntegrationTesting(

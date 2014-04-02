@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-02-04 13:10+0000\n"
+"POT-Creation-Date: 2014-02-21 10:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,38 +10,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
 
 #: ./ftw/downloadtoken/profiles/default/actions.xml
 msgid "Send download link"
 msgstr ""
 
 #. Default: "One email address per line"
-#: ./ftw/downloadtoken/browser/sendmail.py:24
+#: ./ftw/downloadtoken/browser/sendmail.py:26
 msgid "help_recipients"
 msgstr ""
 
 #. Default: "Cancel"
-#: ./ftw/downloadtoken/browser/sendmail.py:79
+#: ./ftw/downloadtoken/browser/sendmail.py:81
 msgid "label_cancel"
 msgstr ""
 
 #. Default: "Comment"
-#: ./ftw/downloadtoken/browser/sendmail.py:29
+#: ./ftw/downloadtoken/browser/sendmail.py:31
 msgid "label_comment"
 msgstr ""
 
+#. Default: "Downloadlink opened"
+#: ./ftw/downloadtoken/handlers.py:26
+msgid "label_open_dllink"
+msgstr "The File was downloaded using a Downloadlink."
+
 #. Default: "Recipients"
-#: ./ftw/downloadtoken/browser/sendmail.py:23
+#: ./ftw/downloadtoken/browser/sendmail.py:25
 msgid "label_recipients"
 msgstr ""
 
 #. Default: "Send"
-#: ./ftw/downloadtoken/browser/sendmail.py:64
+#: ./ftw/downloadtoken/browser/sendmail.py:66
 msgid "label_send"
 msgstr ""
 
+#. Default: "Downloadlink sent"
+#: ./ftw/downloadtoken/handlers.py:11
+msgid "label_send_dllink"
+msgstr "A Downloadlink has been sent to ${mail_list} with the comment ${comment}"
+
 #. Default: "Send file"
-#: ./ftw/downloadtoken/browser/sendmail.py:49
+#: ./ftw/downloadtoken/browser/sendmail.py:51
 msgid "label_send_file"
 msgstr ""
 
@@ -66,7 +77,7 @@ msgid "mail_label_user"
 msgstr ""
 
 #. Default: "[${title}] Download link"
-#: ./ftw/downloadtoken/browser/sendmail.py:93
+#: ./ftw/downloadtoken/browser/sendmail.py:95
 msgid "mail_subject"
 msgstr ""
 
@@ -76,12 +87,13 @@ msgid "mail_text_heading"
 msgstr ""
 
 #. Default: "You entered one or more invalid email addresses."
-#: ./ftw/downloadtoken/browser/sendmail.py:41
+#: ./ftw/downloadtoken/browser/sendmail.py:43
 msgid "text_error_invalid_email"
 msgstr ""
 
 #. Default: "The given recipients has been notified."
-#: ./ftw/downloadtoken/browser/sendmail.py:72
+#: ./ftw/downloadtoken/browser/sendmail.py:74
 msgid "text_send_mail"
 msgstr ""
+
 

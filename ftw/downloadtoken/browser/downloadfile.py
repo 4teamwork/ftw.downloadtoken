@@ -1,8 +1,10 @@
-from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
+from ftw.downloadtoken.events import DownloadlinkOpened
+from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from zExceptions import BadRequest
 from zExceptions import NotFound
+from zope.event import notify
 import AccessControl
 
 
@@ -48,8 +50,8 @@ class DownloadFile(BrowserView):
 
         if len(result) != 1:
             raise NotFound
-
         with SwitchedToSystemUser():
             obj = result[0].getObject()
+            notify(DownloadlinkOpened(obj, downloadtoken.email))
             field = obj.getPrimaryField()
             return field.index_html(obj, disposition='attachment')

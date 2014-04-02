@@ -1,13 +1,15 @@
+from Products.CMFPlone.utils import getToolByName
 from ftw.builder import Builder
 from ftw.builder import create
 from ftw.downloadtoken.interfaces import IDownloadTokenStorage
 from ftw.downloadtoken.testing import FTW_DOWNLOADTOKEN_FUNCTIONAL_TESTING
+from ftw.journal.interfaces import IJournalEntryEvent
 from ftw.testbrowser import browsing
 from ftw.testbrowser.pages import statusmessages
 from ftw.testing.mailing import Mailing
-from Products.CMFPlone.utils import getToolByName
 from unittest2 import TestCase
 from zExceptions import Unauthorized
+from zope.component import eventtesting
 import quopri
 import re
 import transaction
@@ -56,6 +58,19 @@ class TestStorage(TestCase):
 
         self.assertEquals('{0}/view'.format(self.file_.absolute_url()),
                           browser.url)
+
+    @browsing
+    def test_send_mail_journalized(self, browser):
+        eventtesting.clearEvents()
+        browser.login().visit(self.file_, view='send-mail-form')
+        browser.fill({'Recipients': 'email@example.com',
+                      'Comment': 'Test'})
+        browser.find('Send').click()
+        events = [e for e in eventtesting.getEvents()
+                  if IJournalEntryEvent.providedBy(e)]
+        self.assertEqual(1, len(events))
+        self.assertIn('email@example.com', self.file_.translate(events[0].action))
+        self.assertEqual(u'Test', events[0].comment)
 
     @browsing
     def test_cancel_send_mail_form(self, browser):
