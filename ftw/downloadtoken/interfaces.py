@@ -1,4 +1,5 @@
-from zope.interface import Interface, Attribute
+from zope.interface import Attribute
+from zope.interface import Interface
 
 
 class IDownloadTokenStorage(Interface):
@@ -21,7 +22,7 @@ class IDownloadTokenStorage(Interface):
 
 
 class IDownloadlinkSent(Interface):
-    """An event that can be fired to send notifications
+    """An event that can be fired to send notifications.
     """
 
     emails = Attribute("")
@@ -29,7 +30,7 @@ class IDownloadlinkSent(Interface):
 
 
 class IDownloadlinkOpened(Interface):
-    """An event that can be fired to send notifications
+    """An event that can be fired if someone opens a download link.
     """
 
     email = Attribute("")

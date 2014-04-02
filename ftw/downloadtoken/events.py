@@ -1,5 +1,5 @@
-from ftw.downloadtoken.interfaces import IDownloadlinkSent
 from ftw.downloadtoken.interfaces import IDownloadlinkOpened
+from ftw.downloadtoken.interfaces import IDownloadlinkSent
 from zope.interface import implements
 
 
