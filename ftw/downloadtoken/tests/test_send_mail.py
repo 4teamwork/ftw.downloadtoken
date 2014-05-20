@@ -95,11 +95,10 @@ class TestStorage(TestCase):
         mail = self.mails.pop()
         url = get_link_from_email(mail)
         browser.logout().open(url)
+        self.assertEquals('Test data', browser.contents)
 
         with self.assertRaises(Unauthorized):
             browser.visit(self.file_)
-
-        self.assertEquals('Test data', browser.contents)
 
     @browsing
     def test_multiple_recipients(self, browser):
