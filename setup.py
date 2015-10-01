@@ -43,6 +43,7 @@ setup(name='ftw.downloadtoken',
       extras_require=dict(tests=tests_require, journal=journal_require),
 
       install_requires=[
+          'Plone',
           'setuptools',
           'ftw.sendmail',
           'plone.api',
