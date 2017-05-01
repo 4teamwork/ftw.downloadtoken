@@ -8,7 +8,6 @@ from ftw.testbrowser.pages import statusmessages
 from ftw.testing.mailing import Mailing
 from Products.CMFPlone.utils import getToolByName
 from unittest2 import TestCase
-from zExceptions import Unauthorized
 from zope.component import eventtesting
 import quopri
 import re
@@ -97,7 +96,7 @@ class TestStorage(TestCase):
         browser.logout().open(url)
         self.assertEquals('Test data', browser.contents)
 
-        with self.assertRaises(Unauthorized):
+        with browser.expect_unauthorized():
             browser.visit(self.file_)
 
     @browsing

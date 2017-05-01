@@ -6,9 +6,6 @@ from ftw.journal.interfaces import IJournalEntryEvent
 from ftw.testbrowser import browsing
 from Products.CMFPlone.utils import getToolByName
 from unittest2 import TestCase
-from zExceptions import BadRequest
-from zExceptions import NotFound
-from zExceptions import Unauthorized
 from zope.component import eventtesting
 import transaction
 
@@ -27,13 +24,13 @@ class TestStorage(TestCase):
 
     @browsing
     def test_download_fails_if_not_token_given(self, browser):
-        with self.assertRaises(BadRequest):
+        with browser.expect_http_error(reason='Bad Request'):
             browser.visit(view='download-token')
 
     @browsing
     def test_download_fails_invalid_token_given(self, browser):
         url = self.portal.portal_url() + '/download-token?token=12345'
-        with self.assertRaises(BadRequest):
+        with browser.expect_http_error(reason='Bad Request'):
             browser.open(url)
 
     @browsing
@@ -43,7 +40,7 @@ class TestStorage(TestCase):
                        .with_dummy_content()
                        .within(folder))
 
-        with self.assertRaises(Unauthorized):
+        with browser.expect_unauthorized():
             browser.visit(file_)
 
         downloadtoken = self.storage.add(file_, 'name@example.com')
@@ -61,7 +58,7 @@ class TestStorage(TestCase):
                        .with_dummy_content()
                        .within(folder))
 
-        with self.assertRaises(Unauthorized):
+        with browser.expect_unauthorized():
             browser.visit(file_)
 
         downloadtoken = self.storage.add(file_, 'name@example.com')
@@ -86,5 +83,5 @@ class TestStorage(TestCase):
         folder.manage_delObjects([file_.getId()])
         transaction.commit()
 
-        with self.assertRaises(NotFound):
+        with browser.expect_http_error(reason='Not Found'):
             browser.open(url)
